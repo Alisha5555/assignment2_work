@@ -2,10 +2,28 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 
-export default function TopItem({ title, description, image }) {
+
+export function TopItem({ title, description, image }) {
+
+  let imageSource = null;
+  if (typeof image === 'string') {
+    if (image.startsWith('http')) {
+      imageSource = { uri: image };
+    } else if (image.includes('Black_Ops_3.jpg')) {
+      imageSource = require('../pictures/Black_Ops_3.jpg');
+    } else if (image.includes('images.jpg')) {
+      imageSource = require('../pictures/images.jpg');
+    } else if (image.includes('minecraft.jpg')) {
+      imageSource = require('../pictures/minecraft.jpg');
+    }
+  } else {
+    imageSource = image;
+  }
+
   return (
     <View style={styles.container}>
-      <Image source={image} style={styles.image} resizeMode="contain" />
+      <Image source={imageSource} style={styles.image} resizeMode="contain" />
+
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.description}>{description}</Text>
     </View>

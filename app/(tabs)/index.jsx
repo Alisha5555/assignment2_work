@@ -1,28 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
-import TopItem from './components/TopItem';
-import SwitchButton from './components/SwitchButton';
-
-const data = [
-  {
-    title: '#1 - Call of Duty: Black Ops III',
-    description: 'Call of Duty: Black Ops III is a 2015 first-person shooter game developed by Treyarch and published by Activision. It is the twelfth entry in the Call of Duty series. ',
-    image: require('./images/Black_Ops_3.jpg')
-  },
-  {
-    title: '#2 - Rainbow Six Siege',
-    description: 'Tom Clancy\'s Rainbow Six Siege is a 2015 tactical shooter game developed by Ubisoft Montreal and published by Ubisoft. The game puts heavy emphasis on environmental destruction and cooperation between players.',
-    image: require('./images/images.jpg')
-  },
-  {
-    title: '#3 - Minecraft',
-    description: 'Minecraft is a game made up of blocks, creatures, and community. You can survive the night or build a work of art – the choice is all yours.',
-    image: require('./images/minecraft.jpg')
-  }
-];
+import {TopItem }from './../../assets/components/TopItem';
+import {SwitchButton} from './../../assets/components/SwitchButton';
+import {VideoGamesContext} from './../../assets/context/VideoGamesContext';
 
 export default function App() {
   const [selectedIndex, setSelectedIndex] = useState(0);
+    const { videoGames } = useContext(VideoGamesContext);
+    const data = videoGames
 
   return (
     <View style={styles.container}>
